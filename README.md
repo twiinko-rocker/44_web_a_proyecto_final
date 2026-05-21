@@ -1,4 +1,6 @@
 # Colaboradores
 
-- Andrés 🚀
-- Pepe 🧤
+- Andrés (afsanchez04)🚀
+- Pepe (pepe02) 🧤
+- Alvaro 😁
+- Uriel 👑
