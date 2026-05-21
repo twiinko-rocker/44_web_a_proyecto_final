@@ -2,4 +2,4 @@
 
 - Andrés 🚀
 - Alvaro 😁
-- Uriel 👑
+- Uriel (urieljrod) 👑
