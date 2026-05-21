@@ -1,5 +1,5 @@
 # Colaboradores
 
 - Andrés 🚀
-- Alvaro (MrVargasLl) 😁
+- Alvaro 😁
 - Uriel 👑
