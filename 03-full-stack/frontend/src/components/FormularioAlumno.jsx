@@ -1,11 +1,17 @@
 import { useForm } from "react-hook-form"
+import { api } from "../api"
 
 export const FormularioAlumno = () => {
 
   const {register, handleSubmit, formState: {errors}} = useForm()
 
+  const handleAlumno = async (data) => {
+    const { nombre, edad, grupo } = data
+    await api.post('/', { nombre, edad, grupo } )
+  }
+
   return (
-    <form onSubmit={ handleSubmit(handleSubmit) }>
+    <form onSubmit={ handleSubmit(handleAlumno) }>
       <input 
         type="text"  
         placeholder="Nombre"
