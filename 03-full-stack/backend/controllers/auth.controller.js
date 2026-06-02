@@ -24,7 +24,7 @@ export const register = async (req, res) => {
       },
       process.env.SECRET_KEY, //secret key
       {
-        exiresIn: "1d", //duración
+        expiresIn: "1d", //duración
       },
       (err, token) => {
         if (err) console.log(err);
