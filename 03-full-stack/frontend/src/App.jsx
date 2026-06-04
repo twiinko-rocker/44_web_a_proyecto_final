@@ -1,13 +1,21 @@
-import { FormularioAlumno } from "./components/FormularioAlumno"
-import { ListaAlumnos } from "./components/ListaAlumnos"
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Home } from '../pages/Home'
+import { Register } from '../pages/Register'
+import { Login } from '../pages/Login'
+import { Profile } from '../pages/Profile'
 
 export const App = () => {
   return (
-    <div>
-      <h1>Aplicación de gestión de alumnos</h1>
-      <ListaAlumnos />
-      <FormularioAlumno/>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <Home /> } />
+          <Route path="/register" element={ <Register /> } />
+          <Route path="/login" element={ <Login /> } />
+          <Route path="/profile" element={ <Profile /> } />
+        </Routes>
+      
+      </BrowserRouter>
+    </>
   )
 }
