@@ -14,7 +14,7 @@ export const PrivateRoute = ({children}) => {
         setAuth(true)
       } catch (error) {
         console.log(error)
-        setAuth(true)
+        setAuth(false)
       }
     }
 
