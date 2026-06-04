@@ -1,18 +1,34 @@
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { loginRequest } from "../src/api/auth"
+import { useState } from "react"
 
 
 export const Login = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const [loginErrors, setLoginErrors] = useState()
+  const navigate = useNavigate()
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+
+    const { email, password } = data
+
+    try {
+      await loginRequest({email, password})
+      navigate("/profile")
+    } catch (error) {
+      console.log(error)
+      setLoginErrors(error.response.data.message)
+    }
+
     console.log("Datos enviados:", data)
   }
 
   return (
     <div className="container">
       <div className="d-flex flex-column align-items-center">
+        {loginErrors && <p className="text-danger text-center">{loginErrors}</p>}
         <h1 className='mb-4' >Login</h1>
         <form className='w-25' onClick={handleSubmit(onSubmit)}>
           

@@ -1,17 +1,32 @@
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { registerRequest } from '../src/api/auth'
+import { useState } from 'react'
 
 export const Register = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const [registerErrors, setRegisterErrors] = useState()
+  const navigate = useNavigate()
 
-  const onSubmit = (data) => {
-    console.log("Datos enviados:", data)
+  const onSubmit = async (data) => {
+
+    const {username, email, password} = data
+
+    try {
+      await registerRequest({username, email, password})
+      navigate("/profile")
+    } catch (error) {
+      console.log(error)
+      setRegisterErrors(error.response.data.message)
+    }
+
   }
 
   return (
     <div className="container">
       <div className="d-flex flex-column align-items-center">
+        {registerErrors && <p className='text-danger text-center'>{registerErrors}</p>}
         <h1 className='mb-4' >Registro</h1>
         <form className='w-25' onClick={handleSubmit( onSubmit )}>
           <div className="mb-3">
