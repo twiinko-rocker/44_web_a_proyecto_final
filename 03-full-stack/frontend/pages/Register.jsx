@@ -1,37 +1,56 @@
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 export const Register = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm()
 
+  const onSubmit = (data) => {
+    console.log("Datos enviados:", data)
+  }
+
   return (
     <div className="container">
       <div className="d-flex flex-column align-items-center">
         <h1 className='mb-4' >Registro</h1>
-        <form className='w-25'>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Username</label>
+        <form className='w-25' onClick={handleSubmit( onSubmit )}>
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
+              {...register( "username" , { required: "El username es requerido" } )}
             />
+            {errors.username && (
+              <div className='text-danger'>{errors.username.message}</div>
+            )}
           </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <div className="mb-3">
+            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
+              {...register( "email" , { required: "El email es requerido" } )}
             />
+            {errors.email && (
+              <div className='text-danger'>{errors.email.message}</div>
+            )}
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
             <input
               type="password"
-              class="form-control"
+              className="form-control"
+              {...register( "password" , { required: "El password es requerido" } )}
             />
+            {errors.password && (
+              <div className='text-danger'>{errors.password.message}</div>
+            )}
           </div>
-          <button type="submit" class="btn btn-primary">Registrarse</button>
+          <button type="submit" className="btn btn-primary w-100">Registrarse</button>
         </form>
+
+        <p className='mt-3'>Ya tienes cuenta? <Link className='btn-link' to="/login">Inicia sesión</Link></p>
       </div>
     </div>
   )
