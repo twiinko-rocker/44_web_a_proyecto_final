@@ -2,9 +2,12 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import { loginRequest } from "../src/api/auth"
 import { useState } from "react"
+import { useAuth } from "../src/context/AuthContext"
 
 
 export const Login = () => {
+
+  const { setUser } = useAuth() //para actualizar el estado del usuario al hacer login
 
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [loginErrors, setLoginErrors] = useState()
@@ -14,8 +17,9 @@ export const Login = () => {
 
     const { email, password } = data
 
-    try {
-      await loginRequest({email, password})
+    try {   
+      const res = await loginRequest({email, password})
+      setUser(res.data) //actualizar el estado del usuario
       navigate("/profile")
     } catch (error) {
       console.log(error)

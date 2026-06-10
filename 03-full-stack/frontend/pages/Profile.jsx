@@ -1,33 +1,8 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { logoutRequest, profileRequest } from "../src/api/auth"
-
+import { useAuth } from "../src/context/AuthContext"
 
 export const Profile = () => {
 
-  const [user, setUser] = useState(null)
-  const navigate = useNavigate()
-
-  useEffect(() => {
-
-    const fetchProfile = async () => {
-      try {
-        const res = await profileRequest()
-        setUser(res.data)
-      } catch (error) {
-        console.error("Error al cargar el perfil", error)
-      }
-    }
-
-    fetchProfile()
-
-  }, [])
-
-  const handleLogout = async () => {
-    await logoutRequest()
-    navigate("/login")
-  }
-
+  const { user, logout } = useAuth() //para actualizar el estado del usuario al hacer login
 
   return (
     <div>
@@ -37,7 +12,7 @@ export const Profile = () => {
           <div>
             <p>Nombre: {user.username}</p>
             <p>Email: {user.email}</p>
-            <button onClick={handleLogout}>Cerrar sesión</button>
+            <button onClick={logout}>Cerrar sesión</button>
           </div>
         ) : (
           <p>Cargando perfil...</p>
