@@ -10,5 +10,5 @@ export const PrivateRoute = ({children}) => {
   if( loading === null ) return <p>Cargando...</p>
   
 
-  return auth ? children : <Navigate to="/login"/>
+  return user ? children : <Navigate to="/login"/>
 }

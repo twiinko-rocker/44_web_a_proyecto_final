@@ -4,11 +4,13 @@ import { Register } from '../pages/Register'
 import { Login } from '../pages/Login'
 import { Profile } from '../pages/Profile'
 import { PrivateRoute } from './PrivateRoute'
+import { NavBar } from './components/NavBar'
 
 export const App = () => {
   return (
     <>
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
