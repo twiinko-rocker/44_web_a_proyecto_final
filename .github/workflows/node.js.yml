@@ -16,3 +16,7 @@ jobs:
 
     - name: "Hola mundo"
       run: echo "Hola mundo"
+    - name: "Mostrar fecha"
+      run: date
+    - name: "Mostrar contenido de la carpeta"
+      run: ls -la
